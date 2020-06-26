@@ -183,7 +183,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/31/skiplist/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/23/%E9%94%81%E7%9A%84%E4%BC%98%E5%8C%96/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -197,7 +197,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/05/31/skiplist/" class="post-title-link" itemprop="url">跳跃表</a>
+            <a href="/2020/06/23/%E9%94%81%E7%9A%84%E4%BC%98%E5%8C%96/" class="post-title-link" itemprop="url">锁优化</a>
         </h2>
 
         <div class="post-meta">
@@ -206,10 +206,590 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-05-31 12:52:06 / 修改时间：13:20:26" itemprop="dateCreated datePublished" datetime="2020-05-31T12:52:06+08:00">2020-05-31</time>
+              <time title="创建时间：2020-06-23 18:32:06" itemprop="dateCreated datePublished" datetime="2020-06-23T18:32:06+08:00">2020-06-23</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-25 21:45:18" itemprop="dateModified" datetime="2020-06-25T21:45:18+08:00">2020-06-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="锁优化"><a href="#锁优化" class="headerlink" title="锁优化"></a>锁优化</h1><p>最近在公司实习，因为锁的选择不当导致了服务器宕机，这里由于保密规定，不能泄露太多，只能从书本知识上尽量模拟一下场景，好记住教训。<strong>本文即将涉及特定场景下锁选择问题，以及优化锁的临界区长度还有如何减小锁的粒度</strong></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/06/23/%E9%94%81%E7%9A%84%E4%BC%98%E5%8C%96/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/12/HotRing%E8%AF%BB%E5%90%8E%E6%84%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="George">
+      <meta itemprop="description" content="It's gonna to be really fun!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="George">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/12/HotRing%E8%AF%BB%E5%90%8E%E6%84%9F/" class="post-title-link" itemprop="url">阿里KV引擎HotRing读后感</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-12 15:20:06" itemprop="dateCreated datePublished" datetime="2020-05-12T15:20:06+08:00">2020-05-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-25 21:48:00" itemprop="dateModified" datetime="2020-06-25T21:48:00+08:00">2020-06-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">分布式</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="HotRing"><a href="#HotRing" class="headerlink" title="HotRing"></a>HotRing</h1><blockquote>
+<p>HotRing是Tair团队的创新性纯内存KV存储引擎设计。其引擎吞吐性能可达600M ops/s，与目前最快的KVS系统相比，可实现2.58倍的性能提升。HotRing最重要的创新点是：极大的提升了KVS引擎对于热点访问的承载能力。这对于KVS系统的稳定性以及成本控制尤为关键。</p>
+</blockquote>
+<p>PS: 笔者能力有限，仅限于对这篇博大精深的文章提出部分<strong>自己的思考与总计</strong></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/05/12/HotRing%E8%AF%BB%E5%90%8E%E6%84%9F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/01/LockFreeQueue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="George">
+      <meta itemprop="description" content="It's gonna to be really fun!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="George">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/01/LockFreeQueue/" class="post-title-link" itemprop="url">LockFreeQueue</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-01 15:20:06" itemprop="dateCreated datePublished" datetime="2020-04-01T15:20:06+08:00">2020-04-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-24 23:14:42" itemprop="dateModified" datetime="2020-06-24T23:14:42+08:00">2020-06-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B9%B6%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">并发</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="LockFreeQueue"><a href="#LockFreeQueue" class="headerlink" title="LockFreeQueue"></a>LockFreeQueue</h1><blockquote>
+<p>没什么好说的，直接附上源码和注释</p>
+</blockquote>
+<p>LockFreeQueue的起源：主要在自己造服务器轮子的时候，为了较少异步任务调配的开销，改用了无锁编程，下面的代码极力的控制了CAS自旋的粒度，避免某一个线程占用节点的时候，其余线程出现忙等待的状态。</p>
+<p><strong>代码实现主要这篇论文</strong> -&gt; <a href="https://www.cs.rochester.edu/u/scott/papers/1996_PODC_queues.pdf" target="_blank" rel="noopener">[参考论文]</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/01/LockFreeQueue/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/23/StringSSO/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="George">
+      <meta itemprop="description" content="It's gonna to be really fun!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="George">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/23/StringSSO/" class="post-title-link" itemprop="url">string的短字符优化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-23 12:12:06" itemprop="dateCreated datePublished" datetime="2020-03-23T12:12:06+08:00">2020-03-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-25 21:48:03" itemprop="dateModified" datetime="2020-06-25T21:48:03+08:00">2020-06-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/STL/" itemprop="url" rel="index"><span itemprop="name">STL</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="string的短字符优化"><a href="#string的短字符优化" class="headerlink" title="string的短字符优化"></a>string的短字符优化</h1><p>之所以有这篇文章是因为在完成项目的时候遇到了一个问题，百思不得其解！最后借助了在强大的StackOverflow上提问，才解决这个问题。因为项目比较复杂，所以只能把关键部分提取出来，重现一下问题的场景。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/23/StringSSO/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/01/redis%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="George">
+      <meta itemprop="description" content="It's gonna to be really fun!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="George">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/01/redis%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">redis读书笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-01 09:24:44" itemprop="dateCreated datePublished" datetime="2020-03-01T09:24:44+08:00">2020-03-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-24 23:13:08" itemprop="dateModified" datetime="2020-06-24T23:13:08+08:00">2020-06-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="浅析Redis"><a href="#浅析Redis" class="headerlink" title="浅析Redis"></a>浅析Redis</h1><p>本文主要是自己的思考以及《Redis设计与实现》的读书笔记！</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/01/redis%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/25/Debug%E7%A5%9E%E5%99%A8Valgrind/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="George">
+      <meta itemprop="description" content="It's gonna to be really fun!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="George">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/25/Debug%E7%A5%9E%E5%99%A8Valgrind/" class="post-title-link" itemprop="url">调试神器Valgrind</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-25 13:42:09" itemprop="dateCreated datePublished" datetime="2020-02-25T13:42:09+08:00">2020-02-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-25 21:47:38" itemprop="dateModified" datetime="2020-06-25T21:47:38+08:00">2020-06-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Valgrind"><a href="#Valgrind" class="headerlink" title="Valgrind"></a>Valgrind</h1><p>在完成项目的过程中少不了要检查内存错误，发现潜在的线程安全问题，这时候就要借助强大的分析工具了。Valgrind也是自己在写大型项目的时候发现，竟有此等神器，便觉得这么好的东西一定要分享记录！本文主要参照徐晓鑫《后台开发：核心技术与应用实践》一书撰写，其实也是<strong>实践</strong>笔记。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/25/Debug%E7%A5%9E%E5%99%A8Valgrind/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/23/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="George">
+      <meta itemprop="description" content="It's gonna to be really fun!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="George">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/23/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">迭代器失效</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-23 18:32:06" itemprop="dateCreated datePublished" datetime="2020-02-23T18:32:06+08:00">2020-02-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-25 21:45:12" itemprop="dateModified" datetime="2020-06-25T21:45:12+08:00">2020-06-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/STL/" itemprop="url" rel="index"><span itemprop="name">STL</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="真正的迭代器失效"><a href="#真正的迭代器失效" class="headerlink" title="真正的迭代器失效"></a>真正的迭代器失效</h1><p>erase之后某个迭代器之后，后面的迭代器真的失效了吗？失效了到底是什么意思？这个问题有趣的很哈哈哈！</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/23/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/20/skiplist/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="George">
+      <meta itemprop="description" content="It's gonna to be really fun!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="George">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/20/skiplist/" class="post-title-link" itemprop="url">跳跃表</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-20 12:52:06" itemprop="dateCreated datePublished" datetime="2020-02-20T12:52:06+08:00">2020-02-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-24 23:13:23" itemprop="dateModified" datetime="2020-06-24T23:13:23+08:00">2020-06-24</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -232,100 +812,17 @@
 
       
           <h1 id="跳跃表"><a href="#跳跃表" class="headerlink" title="跳跃表"></a>跳跃表</h1><blockquote>
-<p>跳跃表（skiplist）作为一种有序数据结构，它通过在每个节点中维持多个指向其它节点的指针，从而达到快速访问节点的目的。<strong>跳跃表以有序的方式在层次化的链表中保存元素， 效率和平衡树媲美</strong> 。</p>
+<p>跳跃表（skiplist）作为一种有序数据结构，它通过在每个节点中维持多个指向其它节点的指针，从而达到快速访问节点的目的。<strong>跳跃表以有序的方式在层次化的链表中保存元素， 效率和平衡树媲美</strong> </p>
 </blockquote>
 <p>本文接下来将从三部分来分析skiplist，即为什么会有跳跃表、怎么理解跳跃表和跳跃表的优缺点！</p>
-<h2 id="Why-is-skiplist"><a href="#Why-is-skiplist" class="headerlink" title="Why is skiplist?"></a>Why is skiplist?</h2><h3 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h3><h4 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h4><ul>
-<li>优点<ul>
-<li>插入和删除的时间复杂度都是O(1)</li>
-<li>不需要分配连续的内存</li>
-</ul>
-</li>
-<li>缺点<ul>
-<li>查找时间复杂度为O(n) - 二分查找无法使用</li>
-<li>无法跳跃到中间节点</li>
-</ul>
-</li>
-</ul>
-<h3 id="解释和分析"><a href="#解释和分析" class="headerlink" title="解释和分析"></a>解释和分析</h3><p>有了上述对链表的分析，我们可以知道，跳跃表就是继承了链表的所有优点而且改进了链表的所有缺点，是不是很神奇！</p>
-<h2 id="What-is-skiplist"><a href="#What-is-skiplist" class="headerlink" title="What is skiplist?"></a>What is skiplist?</h2><h3 id="跳跃表性能"><a href="#跳跃表性能" class="headerlink" title="跳跃表性能"></a>跳跃表性能</h3><table>
-<thead>
-<tr>
-<th align="center">算法</th>
-<th align="center">Average</th>
-<th align="center">Worst</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">空间</td>
-<td align="center">O(n)</td>
-<td align="center">O(nlogn)</td>
-</tr>
-<tr>
-<td align="center">查找</td>
-<td align="center">O(logn)</td>
-<td align="center">O(n)</td>
-</tr>
-<tr>
-<td align="center">插入</td>
-<td align="center">O(logn)</td>
-<td align="center">O(n)</td>
-</tr>
-<tr>
-<td align="center">删除</td>
-<td align="center">O(logn)</td>
-<td align="center">O(n)</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>弄清楚查找类数据结构，主要是弄懂三个步骤，即<strong>查找、插入和删除</strong>的过程</p>
-</blockquote>
-<h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a>查找</h3><p><a href="https://www.cs.cmu.edu/~ckingsf/bioinfo-lectures/skiplists.pdf" target="_blank" rel="noopener">[推荐看一下CMU的课件，清晰易懂]</a></p>
-<p>skiplist的查找主要是利用了多层节点的方法，将普通的链表查找，转化为了二分查找，这样在牺牲空间复杂度的情况下，可以大大提升查找的效率。</p>
-<p>假设查找的键用k来表示：</p>
-<ul>
-<li>如果 k = key, 那么查找完成</li>
-<li>如果 k &lt; nextNode-&gt;key, 那么移动到下一级开始查找</li>
-<li>如果 k &gt;= nextNode-&gt;key,那么继续向前查找</li>
-</ul>
-<h3 id="插入和删除"><a href="#插入和删除" class="headerlink" title="插入和删除"></a>插入和删除</h3><p><strong>根据“以往的经验”，比如红黑树在AVL树的基础上，将平衡性要求放松了，这样使得红黑树的插入和删除效率要高于AVL树</strong>。（红黑树要求从根到叶子的最长的可能路径不多于最短的可能路径的两倍长，AVL要求任意结点的孩子结点之间高度差距最大为1）</p>
-<p>为了提升插入和删除的效率，跳表在层级的节点数处理上也对“结构化”降低也要求（完美的skiplist希望上层的节点数恰好是当前层的1/2，这样可以将二分查找的效率发挥到极致）。</p>
-<p>skiplist降低要求的方法是：</p>
-<ul>
-<li>不要求每一层的节点恰好是前一层节点的一半，但是<strong>期望</strong>每一层节点的一半可以被分配到下一层</li>
-</ul>
-<p>看到<strong>期望</strong>这个词，不难猜出skiplist是一个基于概率的数据结构，这里才插入时决定层数的方法采用的是<strong>抛硬币法</strong></p>
-<h4 id="插入新节点"><a href="#插入新节点" class="headerlink" title="插入新节点"></a>插入新节点</h4><ul>
-<li>利用查找，缺点原链表的插入位置 O(logn)</li>
-<li>把节点插入到原链表 O(1)</li>
-<li>利用抛硬币的方式确定是否要将新节点提升到下一层，结果为“正”，则提升并继续抛硬币，结果为负则停止 O(logn)</li>
-</ul>
-<p>根据上面的之后可以看出，每一个节点都有1/2的概率被提升到上一层，那么根据<strong>期望</strong>，有1/2的节点会被提升到第一层（索引从0开始），有1/4的节点会被提升到第二层。</p>
-<p>在Redis里面，抛硬币法的实现伪码如下<a href="https://juejin.im/post/57fa935b0e3dd90057c50fbc" target="_blank" rel="noopener">[Ref]</a>：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">randomLevel()</span><br><span class="line">    level := <span class="number">1</span></span><br><span class="line">    <span class="comment">// random()返回一个[0...1)的随机数</span></span><br><span class="line">    <span class="keyword">while</span> random() &lt; p <span class="keyword">and</span> level &lt; MaxLevel <span class="keyword">do</span></span><br><span class="line">        level := level + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> level</span><br></pre></td></tr></table></figure>
-
-<p>randomLevel()的伪码中包含两个参数，一个是p，一个是MaxLevel。在Redis的skiplist实现中，这两个参数的取值为：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">p = <span class="number">1</span>/<span class="number">4</span></span><br><span class="line">MaxLevel = <span class="number">32</span></span><br></pre></td></tr></table></figure>
-
-<p>由此可以计算skiplist每个节点的平均层数，也就是每个节点需要多少个“指针”</p>
-<p><strong>删除节点</strong></p>
-<p>删除操作，只需要找到节点，然后往下删除每一层相同节点即可。</p>
-<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
-<li>相比AVL树和红黑树，跳跃表的优点在于维持结构平衡的成本比较低，抛硬币法，完全依靠随机。而AVL和红黑树需要Rebalance来重新调整结构以达到平衡 （不过这是优点也是缺点，没有绝对的优劣，应用场景很重要）</li>
-<li>平衡树的插入和删除操作可能引发子树的调整，逻辑复杂，而skiplist的插入和删除只需要修改相邻节点的指针，操作简单又快速。<strong>这点对于并发数据结构的实现也有好处，锁的粒度可以更小，或者说无锁也更容易实现</strong></li>
-<li><a href="https://juejin.im/post/57fa935b0e3dd90057c50fbc" target="_blank" rel="noopener">[Ref]</a> 从内存占用上来说，skiplist比平衡树更灵活一些。一般来说，平衡树每个节点包含2个指针（分别指向左右子树），而skiplist每个节点包含的指针数目平均为1/(1-p)，具体取决于参数p的大小。如果像Redis里的实现一样，取p=1/4，那么平均每个节点包含1.33个指针，比平衡树更有优势。</li>
-</ul>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li>skiplist实际上是在用空间换时间，如果最高层为<em>n=*㏒(N)，那么占用的总结点数为 1 + *∑ⁿₒ</em> 2⁻ⁱ N ≈ 2N.</li>
-<li><strong>防止缓存不命中</strong>，每一个节点的层全部用固定大小的数组来管理，这里可以避免在查找时，去到下一层时的缓存不命中 (这点有待商榷)</li>
-</ul>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1]. <a href="https://www.cs.cmu.edu/~ckingsf/bioinfo-lectures/skiplists.pdf" target="_blank" rel="noopener">https://www.cs.cmu.edu/~ckingsf/bioinfo-lectures/skiplists.pdf</a></p>
-<p>[2]. <a href="https://medium.com/@cxu29/skip-list-950105054f9d" target="_blank" rel="noopener">https://medium.com/@cxu29/skip-list-950105054f9d</a></p>
-<p>[3]. <a href="https://stackoverflow.com/questions/256511/skip-list-vs-binary-search-tree" target="_blank" rel="noopener">https://stackoverflow.com/questions/256511/skip-list-vs-binary-search-tree</a></p>
-<p>[4]. <a href="https://juejin.im/post/57fa935b0e3dd90057c50fbc" target="_blank" rel="noopener">https://juejin.im/post/57fa935b0e3dd90057c50fbc</a></p>
-<p>[5]. <a href="https://zhuanlan.zhihu.com/p/53975333" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/53975333</a></p>
-<p>[6]. <a href="http://ticki.github.io/blog/skip-lists-done-right/" target="_blank" rel="noopener">http://ticki.github.io/blog/skip-lists-done-right/</a></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/20/skiplist/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -406,15 +903,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>

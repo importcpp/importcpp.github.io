@@ -20,19 +20,22 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="It&#39;s gonna to be really fun!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://yoursite.com/tags/index.html">
+  <meta name="description" content="Valgrind在完成项目的过程中少不了要检查内存错误，发现潜在的线程安全问题，这时候就要借助强大的分析工具了。Valgrind也是自己在写大型项目的时候发现，竟有此等神器，便觉得这么好的东西一定要分享记录！本文主要参照徐晓鑫《后台开发：核心技术与应用实践》一书撰写，其实也是实践笔记。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="调试神器Valgrind">
+<meta property="og:url" content="http://yoursite.com/2020/02/25/Debug%E7%A5%9E%E5%99%A8Valgrind/index.html">
 <meta property="og:site_name" content="George">
-<meta property="og:description" content="It&#39;s gonna to be really fun!">
+<meta property="og:description" content="Valgrind在完成项目的过程中少不了要检查内存错误，发现潜在的线程安全问题，这时候就要借助强大的分析工具了。Valgrind也是自己在写大型项目的时候发现，竟有此等神器，便觉得这么好的东西一定要分享记录！本文主要参照徐晓鑫《后台开发：核心技术与应用实践》一书撰写，其实也是实践笔记。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-05-31T04:43:02.000Z">
-<meta property="article:modified_time" content="2020-05-31T04:55:50.406Z">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-a83000aabd735df71612bd79e696f62b_1440w.jpg">
+<meta property="article:published_time" content="2020-02-25T05:42:09.000Z">
+<meta property="article:modified_time" content="2020-06-25T13:47:38.016Z">
 <meta property="article:author" content="George">
+<meta property="article:tag" content="操作系统">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic4.zhimg.com/80/v2-a83000aabd735df71612bd79e696f62b_1440w.jpg">
 
-<link rel="canonical" href="http://yoursite.com/tags/">
+<link rel="canonical" href="http://yoursite.com/2020/02/25/Debug%E7%A5%9E%E5%99%A8Valgrind/">
 
 
 <script id="page-configurations">
@@ -40,13 +43,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>tags | George
-</title>
+  <title>调试神器Valgrind | George</title>
   
 
 
@@ -179,51 +181,120 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/25/Debug%E7%A5%9E%E5%99%A8Valgrind/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="George">
+      <meta itemprop="description" content="It's gonna to be really fun!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="George">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          调试神器Valgrind
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">tags
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-<div class="post-meta">
+              <time title="创建时间：2020-02-25 13:42:09" itemprop="dateCreated datePublished" datetime="2020-02-25T13:42:09+08:00">2020-02-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-25 21:47:38" itemprop="dateModified" datetime="2020-06-25T21:47:38+08:00">2020-06-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Valgrind"><a href="#Valgrind" class="headerlink" title="Valgrind"></a>Valgrind</h1><p>在完成项目的过程中少不了要检查内存错误，发现潜在的线程安全问题，这时候就要借助强大的分析工具了。Valgrind也是自己在写大型项目的时候发现，竟有此等神器，便觉得这么好的东西一定要分享记录！本文主要参照徐晓鑫《后台开发：核心技术与应用实践》一书撰写，其实也是<strong>实践</strong>笔记。</p>
+<a id="more"></a>
+
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Valgrind由内核（core）以及基于内核的其他调试工具组成。内核类似于一个框架（framework），它模拟了一个CPU环境，并提供服务给其他工具；而其他工具则类似于插件 (plug-in)，利用内核提供的服务完成各种特定的内存调试任务</p>
+<h2 id="valgrind工具"><a href="#valgrind工具" class="headerlink" title="valgrind工具"></a>valgrind工具</h2><p>（1）Memcheck: 这是valgrind应用最广泛的工具，一个重量级的内存检查器，能够发现开发中绝大多数内存错误使用情况，比如: 使用未初始化的内存，使用已经释放了的内存，内存访问越界等。这也是本文将重点介绍的部分。</p>
+<p>（2）Callgrind: 它主要用来检查程序中函数调用过程中出现的问题</p>
+<p>（3）Cachegrind: 它主要用来检查程序中缓存使用出现的问题，Cache分析器，它模拟CPU中的一级缓存和二级缓存，能够精确地支出程序中的Cache的丢失和命中，如果需要，他还能够为用户提供Cache丢失此时、内存引用次数以及每行代码、每个函数、每个模块及整个程序产生的指令数</p>
+<p>（4）Helgrind: 它主要用来检查多线程程序中出现的竞争问题，Helgrind寻找内存中被多个线程访问，而又没有一贯加锁的区域，这些区域往往是线程之间失去同步的地方，而且会导致难以发觉的错误。Helgrind实现了名为Eraser的竞争检测算法，并做了进一步改进，减少了错误报告的次数</p>
+<p>（5）Massif: 堆栈分析器，它主要用来检查程序中堆栈使用中出现的问题</p>
+<p>（6）Extension: 可以利用core提供的功能，自己编写特定的内存调试工具</p>
+<h2 id="内存检查原理"><a href="#内存检查原理" class="headerlink" title="内存检查原理"></a>内存检查原理</h2><img src="https://pic4.zhimg.com/80/v2-a83000aabd735df71612bd79e696f62b_1440w.jpg" alt="img" style="zoom:150%;" />
+
+<p><strong>Memcheck 能够检测出内存问题，关键在于其建立了两个全局表</strong></p>
+<p>1.Valid-Value 表：</p>
+<p>对于进程的整个地址空间中的每一个字节(byte)，都有与之对应的 8 个 bits；对于 CPU 的每个寄存器，也有一个与之对应的 bit 向量。这些 bits 负责记录该字节或者寄存器值是否具有有效的、已初始化的值。</p>
+<p>2.Valid-Address 表</p>
+<p>对于进程整个地址空间中的每一个字节(byte)，还有与之对应的 1 个 bit，负责记录该地址是否能够被读写。</p>
+<p>检测原理: 当要读写内存中某个字节时，首先检查这个字节对应的 A bit。如果该A bit显示该位置是无效位置，memcheck 则报告读写错误。</p>
+<p>内核（core）类似于一个虚拟的 CPU 环境，这样当内存中的某个字节被加载到真实的 CPU 中时，该字节对应的 V bit 也被加载到虚拟的 CPU 环境中。一旦寄存器中的值，被用来产生内存地址，或者该值能够影响程序输出，则 memcheck 会检查对应的V bits，如果该值尚未初始化，则会报告使用未初始化内存错误。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] 徐晓鑫 后台开发：核心技术与应用实践</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag"># 操作系统</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/23/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98/" rel="prev" title="迭代器失效">
+      <i class="fa fa-chevron-left"></i> 迭代器失效
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/01/redis%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="next" title="redis读书笔记">
+      redis读书笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-              目前共计 6 个标签
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/STL/" style="font-size: 30px; color: #111">STL</a> <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/" style="font-size: 12px; color: #ccc">分布式</a> <a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 12px; color: #ccc">并发</a> <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" style="font-size: 30px; color: #111">操作系统</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 12px; color: #ccc">数据结构与算法</a> <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" style="font-size: 12px; color: #ccc">读书笔记</a>
-            </div>
-          </div>
-        
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
 
 
           </div>
@@ -274,6 +345,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Valgrind"><span class="nav-number">1.</span> <span class="nav-text">Valgrind</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#valgrind工具"><span class="nav-number">1.2.</span> <span class="nav-text">valgrind工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存检查原理"><span class="nav-number">1.3.</span> <span class="nav-text">内存检查原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.4.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
