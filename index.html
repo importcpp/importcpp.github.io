@@ -214,7 +214,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-25 21:45:18" itemprop="dateModified" datetime="2020-06-25T21:45:18+08:00">2020-06-25</time>
+                <time title="修改时间：2020-06-27 14:47:39" itemprop="dateModified" datetime="2020-06-27T14:47:39+08:00">2020-06-27</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -237,7 +237,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="锁优化"><a href="#锁优化" class="headerlink" title="锁优化"></a>锁优化</h1><p>最近在公司实习，因为锁的选择不当导致了服务器宕机，这里由于保密规定，不能泄露太多，只能从书本知识上尽量模拟一下场景，好记住教训。<strong>本文即将涉及特定场景下锁选择问题，以及优化锁的临界区长度还有如何减小锁的粒度</strong></p>
+          <h1 id="锁优化"><a href="#锁优化" class="headerlink" title="锁优化"></a>锁优化</h1><p>最近在公司实习，见证了因为锁的选择不当导致了服务器宕机，这里由于保密规定，不能泄露太多，只能从书本知识上尽量模拟一下场景，好记住教训。<strong>本文即将涉及特定场景下锁选择问题，以及优化锁的临界区长度还有如何减小锁的粒度</strong></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/06/23/%E9%94%81%E7%9A%84%E4%BC%98%E5%8C%96/#more" rel="contents">
@@ -295,7 +295,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-25 21:48:00" itemprop="dateModified" datetime="2020-06-25T21:48:00+08:00">2020-06-25</time>
+                <time title="修改时间：2020-06-29 15:38:41" itemprop="dateModified" datetime="2020-06-29T15:38:41+08:00">2020-06-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -514,6 +514,89 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/22/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-%E8%BF%AD%E4%BB%A3%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="George">
+      <meta itemprop="description" content="It's gonna to be really fun!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="George">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/22/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-%E8%BF%AD%E4%BB%A3%E6%B3%95/" class="post-title-link" itemprop="url">快速排序(迭代版)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-22 09:16:06" itemprop="dateCreated datePublished" datetime="2020-03-22T09:16:06+08:00">2020-03-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-06-29 15:31:25" itemprop="dateModified" datetime="2020-06-29T15:31:25+08:00">2020-06-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="QuickSort"><a href="#QuickSort" class="headerlink" title="QuickSort"></a>QuickSort</h1><blockquote>
+<p>起源于面试的时候，面试官叫我手撕一下快速排序算法，于是我按照常规思路（递归）写出来后，面试官才开始真正抛出问题，请你修改成迭代的快排？当时稍稍卡了一下，后来马上反应过来，一定是用栈来模拟函数调用，于是稍稍修改代码就写出来了，作为一个乐于分享的人，当然要记录一下啦</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/22/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-%E8%BF%AD%E4%BB%A3%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/01/redis%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -545,7 +628,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-24 23:13:08" itemprop="dateModified" datetime="2020-06-24T23:13:08+08:00">2020-06-24</time>
+                <time title="修改时间：2020-06-29 15:38:16" itemprop="dateModified" datetime="2020-06-29T15:38:16+08:00">2020-06-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -903,7 +986,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

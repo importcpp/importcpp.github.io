@@ -144,7 +144,7 @@
 <li>采样分析策略：每R次访问，尝试启动对应冲突环的采样，统计item的访问频率。若第R次访问的item已经是头指针指向的item，则不启动采样</li>
 </ul>
 <p>最后：对于这两种方式，其实日常也有接触，真正的能把简单的思想应用到复 杂的系统中才是真大佬啊！ </p>
-<h3 id="无锁链表"><a href="#无锁链表" class="headerlink" title="无锁链表"></a>无锁链表</h3><p>无锁链表的实现，因为最近实在是太忙了，其实还是挺想放个代码的。这里给出一个自己实现的无锁队列的链接，其实整体思路差不多，就是利用CAS机制，不断去判断当前节点是否是自己获取到的节点，这里也给出无锁链表的论文，有兴趣的读者可以自己去看看.<a href="https://www.cl.cam.ac.uk/research/srg/netos/papers/2001-caslists.pdf" target="_blank" rel="noopener">[CMU论文]</a></p>
+<h3 id="无锁链表"><a href="#无锁链表" class="headerlink" title="无锁链表"></a>无锁链表</h3><p>无锁链表的实现，因为最近实在是太忙了，其实还是挺想放个代码的。这里给出一个自己实现的无锁队列的链接，其实整体思路应该差不多，就是利用CAS机制，不断去判断当前节点是否是自己获取到的节点，这里也给出无锁链表的论文，有兴趣的读者可以自己去看看.<a href="https://www.cl.cam.ac.uk/research/srg/netos/papers/2001-caslists.pdf" target="_blank" rel="noopener">[CMU论文]</a></p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1]. Chen, Jiqiang, et al. “HotRing: A Hotspot-Aware In-Memory Key-Value Store.” <em>18th {USENIX} Conference on File and Storage Technologies ({FAST} 20)</em>. 2020.<br>[2]. <a href="https://zhuanlan.zhihu.com/p/112928251" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/112928251</a></p>
 ]]></content>
       <categories>
@@ -230,7 +230,7 @@
 <p><strong>Redis的持久化策略</strong></p>
 <ul>
 <li>RBD:  (RDB is for Redis Database Backup file) 通过快照直接把内存中的数据保存到一个dump文件中，所以即使Redis服务器进程退出，但只要RDB文件存在，Redis服务器就可以用它来还原数据库状态</li>
-<li></li>
+<li>AOF: AOF持久化通过保存Redis服务器所执行的写命令来记录数据库的状态</li>
 </ul>
 <h4 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h4><p>默认Redis是会以快照“RDB”的形式将数据持久化到磁盘的一个二进制文件dump.rdb.  <strong>RDB持久化是通过保存数据库中的键值对来记录数据库状态的</strong></p>
 <h5 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h5><p>RDB生成有两种办法SAVE和BGSAVE</p>
@@ -252,7 +252,7 @@
 </ul>
 <h4 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h4><h5 id="工作原理-1"><a href="#工作原理-1" class="headerlink" title="工作原理"></a>工作原理</h5><p>与RDB持久化通过保存数据库中的键值对来记录数据库状态不同，<strong>AOF持久化是通过保存Redis服务器所执行的写命令来记录数据库状态的</strong></p>
 <p><strong>AOF持久化功能的实现可以分为命令追加、文件写入和文件同步三个步骤</strong></p>
-<h6 id="命令追加"><a href="#命令追加" class="headerlink" title="命令追加"></a>命令追加</h6><p>当AOF持久化功能处于打开状态时，服务器在执行完一个写命令之后，会议协议格式将被执行的写命令追加到服务器状态的aof_buf缓冲区的末尾</p>
+<h6 id="命令追加"><a href="#命令追加" class="headerlink" title="命令追加"></a>命令追加</h6><p>当AOF持久化功能处于打开状态时，服务器在执行完一个写命令之后，会以协议格式将被执行的写命令追加到服务器状态的aof_buf缓冲区的末尾</p>
 <h6 id="文件写入与同步"><a href="#文件写入与同步" class="headerlink" title="文件写入与同步"></a>文件写入与同步</h6><p>因为服务器在处理文件事件时可能会执行写命令， 使得一些内容被追加到 <code>aof_buf</code> 缓冲区里面， 所以在服务器每次结束一个事件循环之前， 它都会调用 <code>flushAppendOnlyFile</code> 函数， 考虑是否需要将 <code>aof_buf</code> 缓冲区中的内容写入和保存到 AOF 文件里面</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">eventLoop</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="comment"># 处理文件事件，接收命令请求以及发送命令回复</span></span><br><span class="line">        <span class="comment"># 处理命令请求时可能会有新内容被追加到 aof_buf 缓冲区中</span></span><br><span class="line">        processFileEvents()</span><br><span class="line">        <span class="comment"># 处理时间事件</span></span><br><span class="line">        processTimeEvents()</span><br><span class="line">        <span class="comment"># 考虑是否要将 aof_buf 中的内容写入和保存到 AOF 文件里面</span></span><br><span class="line">        flushAppendOnlyFile()</span><br></pre></td></tr></table></figure>
 
@@ -264,7 +264,7 @@
 <p>为此， 系统提供了 <code>fsync</code> 和 <code>fdatasync</code> 两个同步函数， 它们可以强制让操作系统立即将缓冲区中的数据写入到硬盘里面， 从而确保写入数据的安全性。</p>
 </blockquote>
 <h6 id="AOF文件重写"><a href="#AOF文件重写" class="headerlink" title="AOF文件重写"></a>AOF文件重写</h6><p>Redis提供AOF文件重写功能主要是为了解决AOF文件体积膨胀的问题，通过该功能，Redis服务器可以创建一个新的AOF文件来替代现有的AOF文件，新旧两个AOF文件所保存的数据库状态相同，但新AOF文件不会包含任何浪费空间的冗余命令，所以新AOF文件的体积通常会比旧AOF文件的体积小很多。</p>
-<p><strong>AOF重写实现原理</strong>：<strong>首先从数据库中读取键现在的指，然后用一条命令去记录键值对代替之前的记录之键值对的多条命令</strong>，新AOF文件不会包含任何浪费空间的冗余命令，所以新AOF文件的体积通常会比旧AOF文件的体积小很多。重写程序在处理列表、哈希表、集合和有序集合则四种可能会带有多个元素的键时，会检查键所包含的元素的个数，如果元素的数量超过了设定常量的值，那么重写程序会使用多条命令来记录键的值，而不是单使用一条命令</p>
+<p><strong>AOF重写实现原理</strong>：<strong>首先从数据库中读取键现在的值，然后用一条命令去记录键值对代替之前记录键值对的多条命令</strong>，新AOF文件不会包含任何浪费空间的冗余命令，所以新AOF文件的体积通常会比旧AOF文件的体积小很多。重写程序在处理列表、哈希表、集合和有序集合则四种可能会带有多个元素的键时，会检查键所包含的元素的个数，如果元素的数量超过了设定常量的值，那么重写程序会使用多条命令来记录键的值，而不是单使用一条命令</p>
 <h6 id="AOF后台重写"><a href="#AOF后台重写" class="headerlink" title="AOF后台重写"></a>AOF后台重写</h6><p>因为Redis使用单个线程处理请求，为防止服务器进程阻塞（服务器无法处理客户端发来的命令请求），所以Redis将AOF重写放到子进程执行，这样由两个好处</p>
 <ol>
 <li>子进程执行AOF重写期间，服务器进程（父进程）可以继续处理命令请求</li>
@@ -447,11 +447,13 @@
 <p>在 <code>Redis Sentinel</code> 模式下，<strong>客户端应用</strong> 在初始化时连接的是 <code>Sentinel</code> <strong>节点集合</strong>，从中获取 <strong>主节点</strong> 的信息。</p>
 </li>
 </ol>
-<h3 id="工作原理-2"><a href="#工作原理-2" class="headerlink" title="工作原理"></a>工作原理</h3><h4 id="哨兵准备工作"><a href="#哨兵准备工作" class="headerlink" title="哨兵准备工作"></a>哨兵准备工作</h4><p>启动并初始化 Sentinel</p>
-<p>获取主服务器信息</p>
-<p>获取从服务器信息</p>
-<p>向主服务器和从服务器发送信息</p>
-<p>接收来自主服务器和从服务器的频道信息</p>
+<h3 id="工作原理-2"><a href="#工作原理-2" class="headerlink" title="工作原理"></a>工作原理</h3><h4 id="哨兵准备工作"><a href="#哨兵准备工作" class="headerlink" title="哨兵准备工作"></a>哨兵准备工作</h4><ol>
+<li>启动并初始化 Sentinel</li>
+<li>获取主服务器信息</li>
+<li>获取从服务器信息</li>
+<li>向主服务器和从服务器发送信息</li>
+<li>接收来自主服务器和从服务器的频道信息</li>
+</ol>
 <h4 id="主要工作内容"><a href="#主要工作内容" class="headerlink" title="主要工作内容"></a>主要工作内容</h4><h5 id="检测主观下线状态"><a href="#检测主观下线状态" class="headerlink" title="检测主观下线状态"></a>检测主观下线状态</h5><p><strong>主观下线</strong> 适用于检测所有与它创建了命令连接的实例（包括主服务器、从服务器、其它Sentinel在内）。如果在 <code>down-after-milliseconds</code> 毫秒内，<code>Sentinel</code> 没有收到 <strong>目标节点</strong> 的有效回复，则会判定 <strong>该节点</strong> 为 <strong>主观下线</strong></p>
 <p>在默认情况下，每个Sentinel以每秒钟一次的频率向所有与它创建了命令连接的实例（包括主服务器、从服务器、其它Sentinel在内）发送一个PING命令，并通过实例返回的PING命令回复来判断实例是否在线</p>
 <h5 id="检查客观下线状态"><a href="#检查客观下线状态" class="headerlink" title="检查客观下线状态"></a>检查客观下线状态</h5><p>当Sentinel将一个主服务器判断为主管下线之后，为了确认这个主服务器是否真的下线了，它会向同样监视这个服务器的其他Sentinel进行询问，看他们是否也认为该主服务器进入下线状态。<strong>当从其他Sentinel那里接收到足够数量已下线判断后，sentinel会将该主服务器判定为客观下线状态</strong></p>
@@ -695,7 +697,7 @@
   <entry>
     <title>锁优化</title>
     <url>/2020/06/23/%E9%94%81%E7%9A%84%E4%BC%98%E5%8C%96/</url>
-    <content><![CDATA[<h1 id="锁优化"><a href="#锁优化" class="headerlink" title="锁优化"></a>锁优化</h1><p>最近在公司实习，因为锁的选择不当导致了服务器宕机，这里由于保密规定，不能泄露太多，只能从书本知识上尽量模拟一下场景，好记住教训。<strong>本文即将涉及特定场景下锁选择问题，以及优化锁的临界区长度还有如何减小锁的粒度</strong></p>
+    <content><![CDATA[<h1 id="锁优化"><a href="#锁优化" class="headerlink" title="锁优化"></a>锁优化</h1><p>最近在公司实习，见证了因为锁的选择不当导致了服务器宕机，这里由于保密规定，不能泄露太多，只能从书本知识上尽量模拟一下场景，好记住教训。<strong>本文即将涉及特定场景下锁选择问题，以及优化锁的临界区长度还有如何减小锁的粒度</strong></p>
 <a id="more"></a>
 
 <h2 id="最简单的加锁方式"><a href="#最简单的加锁方式" class="headerlink" title="最简单的加锁方式"></a>最简单的加锁方式</h2><p>如果不考虑任何场景，最简单的加锁方式如下：</p>
@@ -733,6 +735,31 @@
       </categories>
       <tags>
         <tag>操作系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>快速排序(迭代版)</title>
+    <url>/2020/03/22/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-%E8%BF%AD%E4%BB%A3%E6%B3%95/</url>
+    <content><![CDATA[<h1 id="QuickSort"><a href="#QuickSort" class="headerlink" title="QuickSort"></a>QuickSort</h1><blockquote>
+<p>起源于面试的时候，面试官叫我手撕一下快速排序算法，于是我按照常规思路（递归）写出来后，面试官才开始真正抛出问题，请你修改成迭代的快排？当时稍稍卡了一下，后来马上反应过来，一定是用栈来模拟函数调用，于是稍稍修改代码就写出来了，作为一个乐于分享的人，当然要记录一下啦</p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="递归法"><a href="#递归法" class="headerlink" title="递归法"></a>递归法</h2><p>这个是最容易想到的，先寻找枢纽，然后减小了问题规模，最后再分段重新调用快速排序函数即可！</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">partition</span><span class="params">(vi&amp; data, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> pivot = data[right];			<span class="comment">// 枢纽值</span></span><br><span class="line">	<span class="keyword">int</span> i = left;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; right; ++j) &#123;</span><br><span class="line">		<span class="keyword">if</span> (data[j] &lt; pivot)</span><br><span class="line">		&#123;</span><br><span class="line">			swap(data[j], data[i++]);   <span class="comment">// 小于的提前，大于的放后</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	swap(data[right], data[i]);         <span class="comment">// 中轴值提前，划分两边</span></span><br><span class="line">	<span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quicksort</span><span class="params">(vi&amp; data, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (left &gt;= right) &#123;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> pivot_index = partition(data, left, right);</span><br><span class="line">	quicksort(data, left, pivot_index - <span class="number">1</span>);</span><br><span class="line">	quicksort(data, pivot_index + <span class="number">1</span>, right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>下面才是我们的重点！！！</p>
+</blockquote>
+<h2 id="迭代法"><a href="#迭代法" class="headerlink" title="迭代法"></a>迭代法</h2><p>迭代法实现快排其实不难，主要在于想到如何将多次函数调用给去掉，在数据结构里面，容易与函数调用放在一起的就是栈了，我们都知道函数调用实际上就是利用栈先入后出的特点</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// partition 函数与之前相同</span></span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quicksort</span><span class="params">(vi&amp; data, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (left &gt;= right) &#123;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">stack</span>&lt;pii&gt; stk;</span><br><span class="line">	stk.push(&#123; left, right &#125;);</span><br><span class="line">	<span class="keyword">while</span> (!stk.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		pii cur = stk.top();</span><br><span class="line">		stk.pop();</span><br><span class="line">		<span class="keyword">int</span> pivot_index = partition(data, cur.first, cur.second);</span><br><span class="line">		<span class="keyword">if</span> (cur.first &lt; (pivot_index - <span class="number">1</span>)) &#123;</span><br><span class="line">			stk.push(&#123; cur.first, pivot_index - <span class="number">1</span> &#125;);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> ((pivot_index + <span class="number">1</span>) &lt; cur.second)</span><br><span class="line">		&#123;</span><br><span class="line">			stk.push(&#123; pivot_index + <span class="number">1</span>, cur.second &#125;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>数据结构与算法</category>
+      </categories>
+      <tags>
+        <tag>数据结构与算法</tag>
       </tags>
   </entry>
 </search>

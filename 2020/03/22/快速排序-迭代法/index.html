@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="锁优化最近在公司实习，见证了因为锁的选择不当导致了服务器宕机，这里由于保密规定，不能泄露太多，只能从书本知识上尽量模拟一下场景，好记住教训。本文即将涉及特定场景下锁选择问题，以及优化锁的临界区长度还有如何减小锁的粒度">
+  <meta name="description" content="QuickSort 起源于面试的时候，面试官叫我手撕一下快速排序算法，于是我按照常规思路（递归）写出来后，面试官才开始真正抛出问题，请你修改成迭代的快排？当时稍稍卡了一下，后来马上反应过来，一定是用栈来模拟函数调用，于是稍稍修改代码就写出来了，作为一个乐于分享的人，当然要记录一下啦">
 <meta property="og:type" content="article">
-<meta property="og:title" content="锁优化">
-<meta property="og:url" content="http://yoursite.com/2020/06/23/%E9%94%81%E7%9A%84%E4%BC%98%E5%8C%96/index.html">
+<meta property="og:title" content="快速排序(迭代版)">
+<meta property="og:url" content="http://yoursite.com/2020/03/22/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-%E8%BF%AD%E4%BB%A3%E6%B3%95/index.html">
 <meta property="og:site_name" content="George">
-<meta property="og:description" content="锁优化最近在公司实习，见证了因为锁的选择不当导致了服务器宕机，这里由于保密规定，不能泄露太多，只能从书本知识上尽量模拟一下场景，好记住教训。本文即将涉及特定场景下锁选择问题，以及优化锁的临界区长度还有如何减小锁的粒度">
+<meta property="og:description" content="QuickSort 起源于面试的时候，面试官叫我手撕一下快速排序算法，于是我按照常规思路（递归）写出来后，面试官才开始真正抛出问题，请你修改成迭代的快排？当时稍稍卡了一下，后来马上反应过来，一定是用栈来模拟函数调用，于是稍稍修改代码就写出来了，作为一个乐于分享的人，当然要记录一下啦">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-06-23T10:32:06.000Z">
-<meta property="article:modified_time" content="2020-06-27T06:47:39.847Z">
+<meta property="article:published_time" content="2020-03-22T01:16:06.000Z">
+<meta property="article:modified_time" content="2020-06-29T07:31:25.378Z">
 <meta property="article:author" content="George">
-<meta property="article:tag" content="操作系统">
+<meta property="article:tag" content="数据结构与算法">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/06/23/%E9%94%81%E7%9A%84%E4%BC%98%E5%8C%96/">
+<link rel="canonical" href="http://yoursite.com/2020/03/22/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-%E8%BF%AD%E4%BB%A3%E6%B3%95/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>锁优化 | George</title>
+  <title>快速排序(迭代版) | George</title>
   
 
 
@@ -187,7 +187,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/23/%E9%94%81%E7%9A%84%E4%BC%98%E5%8C%96/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/22/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F-%E8%BF%AD%E4%BB%A3%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -200,7 +200,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          锁优化
+          快速排序(迭代版)
         </h1>
 
         <div class="post-meta">
@@ -210,14 +210,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-06-23 18:32:06" itemprop="dateCreated datePublished" datetime="2020-06-23T18:32:06+08:00">2020-06-23</time>
+              <time title="创建时间：2020-03-22 09:16:06" itemprop="dateCreated datePublished" datetime="2020-03-22T09:16:06+08:00">2020-03-22</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-06-27 14:47:39" itemprop="dateModified" datetime="2020-06-27T14:47:39+08:00">2020-06-27</time>
+                <time title="修改时间：2020-06-29 15:31:25" itemprop="dateModified" datetime="2020-06-29T15:31:25+08:00">2020-06-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -225,7 +225,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">数据结构与算法</span></a>
                 </span>
             </span>
 
@@ -240,38 +240,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="锁优化"><a href="#锁优化" class="headerlink" title="锁优化"></a>锁优化</h1><p>最近在公司实习，见证了因为锁的选择不当导致了服务器宕机，这里由于保密规定，不能泄露太多，只能从书本知识上尽量模拟一下场景，好记住教训。<strong>本文即将涉及特定场景下锁选择问题，以及优化锁的临界区长度还有如何减小锁的粒度</strong></p>
+        <h1 id="QuickSort"><a href="#QuickSort" class="headerlink" title="QuickSort"></a>QuickSort</h1><blockquote>
+<p>起源于面试的时候，面试官叫我手撕一下快速排序算法，于是我按照常规思路（递归）写出来后，面试官才开始真正抛出问题，请你修改成迭代的快排？当时稍稍卡了一下，后来马上反应过来，一定是用栈来模拟函数调用，于是稍稍修改代码就写出来了，作为一个乐于分享的人，当然要记录一下啦</p>
+</blockquote>
 <a id="more"></a>
 
-<h2 id="最简单的加锁方式"><a href="#最简单的加锁方式" class="headerlink" title="最简单的加锁方式"></a>最简单的加锁方式</h2><p>如果不考虑任何场景，最简单的加锁方式如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mutex g_mutex;</span><br><span class="line">g_mutex.lock();</span><br><span class="line"><span class="comment">// do something</span></span><br><span class="line">g_mutex.unlock();</span><br></pre></td></tr></table></figure>
+<h2 id="递归法"><a href="#递归法" class="headerlink" title="递归法"></a>递归法</h2><p>这个是最容易想到的，先寻找枢纽，然后减小了问题规模，最后再分段重新调用快速排序函数即可！</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">partition</span><span class="params">(vi&amp; data, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> pivot = data[right];			<span class="comment">// 枢纽值</span></span><br><span class="line">	<span class="keyword">int</span> i = left;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; right; ++j) &#123;</span><br><span class="line">		<span class="keyword">if</span> (data[j] &lt; pivot)</span><br><span class="line">		&#123;</span><br><span class="line">			swap(data[j], data[i++]);   <span class="comment">// 小于的提前，大于的放后</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	swap(data[right], data[i]);         <span class="comment">// 中轴值提前，划分两边</span></span><br><span class="line">	<span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quicksort</span><span class="params">(vi&amp; data, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (left &gt;= right) &#123;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> pivot_index = partition(data, left, right);</span><br><span class="line">	quicksort(data, left, pivot_index - <span class="number">1</span>);</span><br><span class="line">	quicksort(data, pivot_index + <span class="number">1</span>, right);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>上面的代码没有针对特定场景进行优化，而且当临界区代码执行时间较长时，一个线程执行任务，其余线程都得等待，这个时候上面的代码在高并发环境下就显得很错误了。</p>
 <blockquote>
-<p>注意: 在于自旋锁对比的时候，如果临界区代码执行时间较长，建议选择互斥锁。</p>
+<p>下面才是我们的重点！！！</p>
 </blockquote>
-<h4 id="如何优化"><a href="#如何优化" class="headerlink" title="如何优化"></a>如何优化</h4><p>考虑特定场景，我遇到的是一个<strong>读远大于写</strong>的业务，那么此时可以将读写线程分开加锁，也就是使用<strong>读写锁</strong>，读写锁的大致伪代码如下，之后我会专门写一个关于读写锁的博客(重点讲述下如何避免饥饿，也就是读优先、写优先或者是读写平等)</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 读写锁大致伪代码如下</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RWLock</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">lockR</span><span class="params">()</span></span>&#123;&#125;;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">unlockR</span><span class="params">()</span></span>&#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">lockW</span><span class="params">()</span></span>&#123;&#125;;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">unlockW</span><span class="params">()</span></span>&#123;&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="迭代法"><a href="#迭代法" class="headerlink" title="迭代法"></a>迭代法</h2><p>迭代法实现快排其实不难，主要在于想到如何将多次函数调用给去掉，在数据结构里面，容易与函数调用放在一起的就是栈了，我们都知道函数调用实际上就是利用栈先入后出的特点</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// partition 函数与之前相同</span></span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quicksort</span><span class="params">(vi&amp; data, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (left &gt;= right) &#123;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">stack</span>&lt;pii&gt; stk;</span><br><span class="line">	stk.push(&#123; left, right &#125;);</span><br><span class="line">	<span class="keyword">while</span> (!stk.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		pii cur = stk.top();</span><br><span class="line">		stk.pop();</span><br><span class="line">		<span class="keyword">int</span> pivot_index = partition(data, cur.first, cur.second);</span><br><span class="line">		<span class="keyword">if</span> (cur.first &lt; (pivot_index - <span class="number">1</span>)) &#123;</span><br><span class="line">			stk.push(&#123; cur.first, pivot_index - <span class="number">1</span> &#125;);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> ((pivot_index + <span class="number">1</span>) &lt; cur.second)</span><br><span class="line">		&#123;</span><br><span class="line">			stk.push(&#123; pivot_index + <span class="number">1</span>, cur.second &#125;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>根据上面的读写锁，那么在读线程中可以根据下面的代码段加锁</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RWLock rw_lock;</span><br><span class="line">rw_lock.lockR();</span><br><span class="line"><span class="comment">// read data</span></span><br><span class="line">rw_lock.unlockR();</span><br></pre></td></tr></table></figure>
-
-<p>同理，那么在写线程中可以根据下面的代码段加锁</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">RWLock rw_lock;</span><br><span class="line">rw_lock.lockW();</span><br><span class="line"><span class="comment">// write data</span></span><br><span class="line">rw_lock.unlockW();</span><br></pre></td></tr></table></figure>
-
-<h4 id="重点来了"><a href="#重点来了" class="headerlink" title="重点来了"></a>重点来了</h4><p>虽然实现了读写线程分离，但是这真的就完美了吗？</p>
-<p>先给结论，永远存在更优秀的办法，等着你去挖掘！！！</p>
-<blockquote>
-<p>当写线程的一直占用临界区的时候，那么大量的读线程岂不是都要干瞪眼等着？</p>
-</blockquote>
-<p>如何优化呢？其实这里可以让写线程先把要写的数据准备好，等真正加锁的时候，只是交换一下指针，那么这样可以大大减少临界区的长度。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Data* data; <span class="comment">// data是 读写线程都能接触到的数据</span></span><br><span class="line"></span><br><span class="line">Data* data_copy = data; <span class="comment">// 存在写线程的数据备份</span></span><br><span class="line">WriteSomething(data_copy); <span class="comment">// 现将数据写入data_copy</span></span><br><span class="line">RWLock rw_lock;</span><br><span class="line">rw_lock.lockW();</span><br><span class="line">swap(data, data_copy); <span class="comment">// 这里不管你的写入数据有代码多长，执行时间有多久，最后都优化成了两步</span></span><br><span class="line">data_copy = data;      <span class="comment">// 而且这里只是指针的交换，可以说是极大的减小了临界区</span></span><br><span class="line">rw_lock.unlockW();</span><br></pre></td></tr></table></figure>
-
-<h4 id="更优的办法"><a href="#更优的办法" class="headerlink" title="更优的办法"></a>更优的办法</h4><p>当然了，优秀的代码永远层出不穷！</p>
-<p>利用读写锁只是将读写线程分开，若要将锁的粒度减小到最低，就必须将所有的线程全部分开，减小锁冲撞的概率，优化锁的粒度，这里介绍下Baidu的DoublyBufferedData</p>
-<p><strong>其基本实现如下</strong>：每一份读线程拿一把自己的 thread-local 锁，写需要拿到所有的 thread-local 锁之后才能开始交换Buffer, 这里写线程有两块Buffer, 用来优化临界区，优化方式在上面已经介绍。</p>
-<p>直观上，这种加锁方式和直接使用读写锁差别不大：读请求不相互阻塞，读写请求会相互阻塞。相比读写锁，这种加锁方式的好处是，writer 每次只会阻塞一个 reader 线程，这样即使writer拿锁时间较长，也不会阻碍所有的读线程</p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>锁的选择要根据特定场景，然后还要对临界区以及锁的粒度进行合理的优化，才能不出事啊！</p>
 
     </div>
 
@@ -281,7 +263,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag"># 操作系统</a>
+              <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag"># 数据结构与算法</a>
           </div>
 
         
@@ -290,10 +272,13 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/05/12/HotRing%E8%AF%BB%E5%90%8E%E6%84%9F/" rel="prev" title="阿里KV引擎HotRing读后感">
-      <i class="fa fa-chevron-left"></i> 阿里KV引擎HotRing读后感
+    <a href="/2020/03/01/redis%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="prev" title="redis读书笔记">
+      <i class="fa fa-chevron-left"></i> redis读书笔记
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/23/StringSSO/" rel="next" title="string的短字符优化">
+      string的短字符优化 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -352,7 +337,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#锁优化"><span class="nav-number">1.</span> <span class="nav-text">锁优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#最简单的加锁方式"><span class="nav-number">1.1.</span> <span class="nav-text">最简单的加锁方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何优化"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">如何优化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重点来了"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">重点来了</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更优的办法"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">更优的办法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">1.2.</span> <span class="nav-text">最后</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#QuickSort"><span class="nav-number">1.</span> <span class="nav-text">QuickSort</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#递归法"><span class="nav-number">1.1.</span> <span class="nav-text">递归法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迭代法"><span class="nav-number">1.2.</span> <span class="nav-text">迭代法</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
